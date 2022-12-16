@@ -36,9 +36,9 @@ class Users with ChangeNotifier {
         id,
         () => User(
           id: id,
-          name: 'Teste',
-          email: 'teste@vamilly.com',
-          avatarUrl: '',
+          name: user.name,
+          email: user.email,
+          avatarUrl: user.avatarUrl,
         ),
       );
     }
