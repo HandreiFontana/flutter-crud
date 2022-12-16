@@ -3,6 +3,10 @@ import 'package:flutter_crud/components/user_tile.dart';
 import 'package:flutter_crud/models/user.dart';
 import 'package:flutter_crud/provider/users.dart';
 import 'package:provider/provider.dart';
+// import 'dart:convert';
+// import 'package:flutter_crud/components/select_estado.dart';
+// import 'package:flutter_typeahead/flutter_typeahead.dart';
+// import 'package:http/http.dart' as http;
 
 class UserList extends StatelessWidget {
   const UserList({super.key});
@@ -34,3 +38,17 @@ class UserList extends StatelessWidget {
     );
   }
 }
+
+// class UserList extends StatelessWidget {
+//   const UserList({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('Lista de Usuários'),
+//       ),
+//       body: SelectEstado(),
+//     );
+//   }
+// }
