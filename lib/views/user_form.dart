@@ -3,11 +3,34 @@ import 'package:flutter_crud/models/user.dart';
 import 'package:flutter_crud/provider/users.dart';
 import 'package:provider/provider.dart';
 
-class UserForm extends StatelessWidget {
-  UserForm({super.key});
+class UserForm extends StatefulWidget {
+  const UserForm({super.key});
 
+  @override
+  State<UserForm> createState() => _UserFormState();
+}
+
+class _UserFormState extends State<UserForm> {
   final _form = GlobalKey<FormState>();
+
   final Map<String, String> _formData = {};
+
+  void _loadFormData(user) {
+    if (user != null) {
+      _formData['id'] = user.id;
+      _formData['name'] = user.name;
+      _formData['email'] = user.email;
+      _formData['avatarUrl'] = user.avatarUrl;
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final user = ModalRoute.of(context)?.settings.arguments;
+    _loadFormData(user);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +68,7 @@ class UserForm extends StatelessWidget {
           child: Column(
             children: <Widget>[
               TextFormField(
+                initialValue: _formData['name'],
                 decoration: const InputDecoration(labelText: 'Nome'),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
@@ -60,6 +84,7 @@ class UserForm extends StatelessWidget {
                 onSaved: (value) => _formData['name'] = value!,
               ),
               TextFormField(
+                initialValue: _formData['email'],
                 decoration: const InputDecoration(labelText: 'E-Mail'),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
@@ -75,6 +100,7 @@ class UserForm extends StatelessWidget {
                 onSaved: (value) => _formData['email'] = value!,
               ),
               TextFormField(
+                initialValue: _formData['avatarUrl'],
                 decoration: const InputDecoration(labelText: 'URL do Avatar'),
                 onSaved: (value) => _formData['avatarUrl'] = value!,
               )
